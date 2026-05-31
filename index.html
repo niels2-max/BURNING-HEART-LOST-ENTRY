@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>FLAME HEART FILE</title>
 
 <style>
@@ -10,10 +11,14 @@ body {
   color: #00ff66;
   font-family: monospace;
   padding: 20px;
+  margin: 0;
 }
 
 #terminal {
   white-space: pre-line;
+  max-width: 800px;
+  margin: 0 auto;
+  font-size: 14px;
 }
 
 input {
@@ -22,10 +27,11 @@ input {
   border-bottom: 1px solid #00ff66;
   color: #00ff66;
   font-family: monospace;
-  font-size: 14px;
+  font-size: 16px;
   outline: none;
-  margin-top: 6px;
-  display: block;
+  margin-top: 10px;
+  width: 100%;
+  max-width: 400px;
 }
 
 button {
@@ -35,7 +41,10 @@ button {
   color: #00ff66;
   font-family: monospace;
   cursor: pointer;
-  padding: 5px;
+  padding: 6px;
+  width: 100%;
+  max-width: 200px;
+  display: block;
 }
 </style>
 </head>
@@ -61,6 +70,26 @@ const lines = [
 let i = 0;
 let j = 0;
 
+let dotState = 0;
+let loadingDotsInterval;
+
+function startLoadingDots() {
+  const t = document.getElementById("terminal");
+
+  const dotLine = document.createElement("div");
+  dotLine.id = "loadingDots";
+  t.appendChild(dotLine);
+
+  loadingDotsInterval = setInterval(() => {
+    dotState = (dotState + 1) % 4;
+    dotLine.innerHTML = "LOADING" + ".".repeat(dotState);
+  }, 400);
+}
+
+function stopLoadingDots() {
+  clearInterval(loadingDotsInterval);
+}
+
 function typeLines() {
   const t = document.getElementById("terminal");
 
@@ -76,7 +105,13 @@ function typeLines() {
       setTimeout(typeLines, 90);
     }
   } else {
-    setTimeout(showPasswordScreen, 2500);
+    startLoadingDots();
+
+    // total delay now 5 seconds before password screen
+    setTimeout(() => {
+      stopLoadingDots();
+      showPasswordScreen();
+    }, 5000);
   }
 }
 
@@ -84,7 +119,6 @@ function showPasswordScreen() {
   const t = document.getElementById("terminal");
   t.innerHTML = "";
 
-  // Hint text (above input)
   const hintText = document.createElement("div");
   hintText.innerHTML =
     "Bojkxk kyz bojkxo, kz wauj kd otboyu yvkizgz taswags uhroboyiozax barzas waks joyioz. Waoj yas kmu?";
@@ -127,15 +161,15 @@ function showHint(btn, t) {
 
   const text = "The man who made Rome great, a>g";
 
-  let i = 0;
+  let k = 0;
   const line = document.createElement("div");
   t.appendChild(document.createElement("br"));
   t.appendChild(line);
 
   function typeHint() {
-    if (i < text.length) {
-      line.innerHTML += text[i];
-      i++;
+    if (k < text.length) {
+      line.innerHTML += text[k];
+      k++;
       setTimeout(typeHint, 20);
     }
   }
