@@ -1,17 +1,72 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Case 7B</title>
+  <meta charset="UTF-8">
+  <title>CASE FILE</title>
+  <style>
+    body {
+      background: black;
+      color: #00ff66;
+      font-family: monospace;
+      padding: 20px;
+    }
+
+    #terminal {
+      white-space: pre-line;
+      font-size: 14px;
+    }
+
+    .cursor {
+      display: inline-block;
+      width: 10px;
+      background: #00ff66;
+      margin-left: 2px;
+      animation: blink 1s infinite;
+    }
+
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
+  </style>
 </head>
-<body style="font-family: monospace; background:black; color:lime;">
-  
-  <h2>CASE 7B ACCESS FILE</h2>
+<body>
 
-  <p>Encoded String:</p>
-  <p>U2lyIE11cHAgd2FzIGhlcmU=</p>
+<div id="terminal"></div><span class="cursor"></span>
 
-  <p>Hint:</p>
-  <p>Base64 decode. Then reverse the result.</p>
+<script>
+const lines = [
+  "INITIALIZING CHEAP SHOT PROTOCOL...",
+  "LOADING FILE: FLAME HEART CASE",
+  "CONNECTING TO ARCHIVE...",
+  "ACCESS GRANTED",
+  "",
+  "NOTE: SIGNAL DETECTED IN DESERT REGION",
+  "WARNING: OBSERVATION PRESENCE CONFIRMED",
+  "",
+  "OPENING REPORT..."
+];
+
+let i = 0;
+let j = 0;
+const speed = 25;
+
+function typeLine() {
+  if (i < lines.length) {
+    if (j < lines[i].length) {
+      document.getElementById("terminal").innerHTML += lines[i].charAt(j);
+      j++;
+      setTimeout(typeLine, speed);
+    } else {
+      document.getElementById("terminal").innerHTML += "\n";
+      i++;
+      j = 0;
+      setTimeout(typeLine, 200);
+    }
+  }
+}
+
+typeLine();
+</script>
 
 </body>
 </html>
