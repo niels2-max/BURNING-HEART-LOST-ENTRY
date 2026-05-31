@@ -1,4 +1,60 @@
-<!DOCTYPE html>
+<script>
+const lines = [
+  "INITIALIZING CHEAP SHOT PROTOCOL...",
+  "LOADING FILE: FLAME HEART CASE",
+  "CONNECTING TO ARCHIVE...",
+  "ACCESS GRANTED",
+  "",
+  "NOTE: SIGNAL DETECTED IN DESERT REGION",
+  "WARNING: OBSERVATION PRESENCE CONFIRMED",
+  "",
+  "OPENING REPORT..."
+];
+
+let i = 0;
+let j = 0;
+const speed = 25;
+
+function typeLine() {
+  if (i < lines.length) {
+    if (j < lines[i].length) {
+      document.getElementById("terminal").innerHTML += lines[i].charAt(j);
+      j++;
+      setTimeout(typeLine, speed);
+    } else {
+      document.getElementById("terminal").innerHTML += "\n";
+      i++;
+      j = 0;
+      setTimeout(typeLine, 120);
+    }
+  } else {
+    showPasswordPrompt();
+  }
+}
+
+function showPasswordPrompt() {
+  const terminal = document.getElementById("terminal");
+
+  terminal.innerHTML += "\n\n";
+
+  const prompt = document.createElement("span");
+  prompt.id = "passwordPrompt";
+  prompt.innerHTML = "> ENTER PASSWORD";
+  terminal.appendChild(prompt);
+
+  const cursor = document.createElement("span");
+  cursor.id = "cursor";
+  cursor.innerHTML = " █";
+  terminal.appendChild(cursor);
+
+  // blinking cursor
+  setInterval(() => {
+    cursor.style.opacity = cursor.style.opacity === "0" ? "1" : "0";
+  }, 500);
+}
+
+typeLine();
+</script><!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
