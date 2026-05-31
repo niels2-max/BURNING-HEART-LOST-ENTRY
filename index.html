@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>CASE FILE</title>
+<title>FLAME HEART FILE</title>
 
 <style>
 body {
@@ -16,18 +16,6 @@ body {
   white-space: pre-line;
 }
 
-.cursor {
-  display: inline-block;
-  width: 10px;
-  background: #00ff66;
-  margin-left: 4px;
-  animation: blink 0.8s infinite;
-}
-
-@keyframes blink {
-  50% { opacity: 0; }
-}
-
 input {
   background: black;
   border: none;
@@ -36,7 +24,20 @@ input {
   font-family: monospace;
   font-size: 14px;
   outline: none;
+  margin-top: 5px;
+  display: block;
 }
+
+button {
+  margin-top: 10px;
+  background: black;
+  border: 1px solid #00ff66;
+  color: #00ff66;
+  font-family: monospace;
+  cursor: pointer;
+  padding: 5px;
+}
+
 </style>
 </head>
 
@@ -45,6 +46,7 @@ input {
 <div id="terminal"></div>
 
 <script>
+
 const lines = [
   "INITIALIZING CHEAP SHOT PROTOCOL...",
   "LOADING FILE: FLAME HEART CASE",
@@ -61,63 +63,83 @@ let i = 0;
 let j = 0;
 
 function typeLines() {
+  const t = document.getElementById("terminal");
+
   if (i < lines.length) {
     if (j < lines[i].length) {
-      document.getElementById("terminal").innerHTML += lines[i].charAt(j);
+      t.innerHTML += lines[i].charAt(j);
       j++;
-      setTimeout(typeLines, 30);
+      setTimeout(typeLines, 20);
     } else {
-      document.getElementById("terminal").innerHTML += "\n";
+      t.innerHTML += "\n";
       i++;
       j = 0;
-      setTimeout(typeLines, 120);
+      setTimeout(typeLines, 100);
     }
   } else {
-    setTimeout(showPasswordScreen, 1200);
+    setTimeout(showPasswordScreen, 1300); // cooldown
   }
 }
 
 function showPasswordScreen() {
-  const terminal = document.getElementById("terminal");
+  const t = document.getElementById("terminal");
+  t.innerHTML = "";
 
-  // clear screen
-  terminal.innerHTML = "";
-
-  const text = document.createElement("div");
-  text.innerHTML = "> ENTER PASSWORD";
-  terminal.appendChild(text);
+  // 🔥 hint text ABOVE input (as requested)
+  const hintText = document.createElement("div");
+  hintText.innerHTML =
+    "Bojkxk kyz bojkxo, kz wauj kd otboyu yvkizgz taswags uhroboyiozax barzas waks joyioz. Waoj yas kmu?";
+  t.appendChild(hintText);
 
   const input = document.createElement("input");
-  input.type = "text";
-  input.autofocus = true;
+  t.appendChild(input);
 
-  terminal.appendChild(input);
+  const btn = document.createElement("button");
+  btn.innerHTML = "submit";
+  t.appendChild(btn);
 
-  const cursor = document.createElement("span");
-  cursor.className = "cursor";
-  cursor.innerHTML = " ";
-  terminal.appendChild(cursor);
-
-  input.addEventListener("keydown", function(e) {
-    if (e.key === "Enter") {
-      checkPassword(input.value.trim());
-    }
-  });
+  btn.onclick = () => checkPassword(input.value.trim(), t, input);
 }
 
-function checkPassword(value) {
-  const terminal = document.getElementById("terminal");
+function checkPassword(val, t, input) {
+  const oldError = document.getElementById("error");
+  if (oldError) oldError.remove();
 
-  terminal.innerHTML = "";
-
-  if (value === "YOUR_PASSWORD_HERE") {
-    terminal.innerHTML = "> ACCESS GRANTED\n\nLOADING FILE CONTENT...\n\n[REDACTED DATA STREAM]";
+  if (val === "monkey" || val === "Monkey") {
+    showSecondPrompt();
   } else {
-    terminal.innerHTML = "> ACCESS DENIED\n\nOBSERVATION LOG UPDATED";
+    const error = document.createElement("div");
+    error.id = "error";
+    error.innerHTML = "ACCESS DENIED. RETRY.";
+    error.style.color = "red";
+    t.appendChild(error);
   }
+
+  input.value = "";
+}
+
+function showSecondPrompt() {
+  const t = document.getElementById("terminal");
+  t.innerHTML = "";
+
+  const q = document.createElement("div");
+  q.innerHTML = "> what do you seek?";
+  t.appendChild(q);
+
+  const input = document.createElement("input");
+  t.appendChild(input);
+
+  const btn = document.createElement("button");
+  btn.innerHTML = "submit";
+  t.appendChild(btn);
+
+  btn.onclick = () => {
+    t.innerHTML = "> RESPONSE LOGGED\n\n[placeholder]";
+  };
 }
 
 typeLines();
+
 </script>
 
 </body>
