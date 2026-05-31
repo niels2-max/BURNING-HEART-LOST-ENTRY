@@ -65,7 +65,7 @@ function typeLines() {
     if (j < lines[i].length) {
       document.getElementById("terminal").innerHTML += lines[i].charAt(j);
       j++;
-      setTimeout(typeLines, 25);
+      setTimeout(typeLines, 30);
     } else {
       document.getElementById("terminal").innerHTML += "\n";
       i++;
@@ -73,7 +73,7 @@ function typeLines() {
       setTimeout(typeLines, 120);
     }
   } else {
-    setTimeout(showPasswordScreen, 500);
+    setTimeout(showPasswordScreen, 1200);
   }
 }
 
