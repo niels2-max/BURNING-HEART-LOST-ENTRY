@@ -1,1 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>CASE FILE TERMINAL</title>
+
+<style>
+
+body{
+    background:#000;
+    color:#00ff66;
+    font-family:monospace;
+    margin:0;
+    padding:0;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+#terminal{
+    width:900px;
+    max-width:90%;
+    border:1px solid #00ff66;
+    padding:30px;
+    box-shadow:
+        0 0 10px #00ff66,
+        inset 0 0 10px rgba(0,255,102,0.2);
+}
+
+.header{
+    text-align:center;
+    margin-bottom:25px;
+}
+
+.header h1{
+    margin:0;
+    font-size:26px;
+    letter-spacing:3px;
+    font-weight:normal;
+}
+
+.header h2{
+    margin-top:8px;
+    font-size:14px;
+    font-weight:normal;
+    opacity:0.8;
+}
+
+.divider{
+    margin:25px 0;
+    border-top:1px solid #00ff66;
+}
+
+.section-title{
+    font-size:18px;
+    margin-bottom:20px;
+}
+
+.prompt{
+    margin-bottom:15px;
+}
+
+.input-line{
+    display:flex;
+    align-items:center;
+}
+
+.prompt-arrow{
+    margin-right:10px;
+}
+
+input{
+    background:transparent;
+    border:none;
+    color:#00ff66;
+    font-family:monospace;
+    font-size:16px;
+    outline:none;
+    width:100%;
+}
+
+.cursor{
+    animation:blink 1s infinite;
+}
+
+@keyframes blink{
+    50%{
+        opacity:0;
+    }
+}
+
+.scanline{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    background:
+        repeating-linear-gradient(
+            to bottom,
+            rgba(255,255,255,0.02),
+            rgba(255,255,255,0.02) 1px,
+            transparent 1px,
+            transparent 4px
+        );
+}
+
+</style>
+</head>
+<body>
+
+<div id="terminal">
+
+    <div class="header">
+        <h1>SPECIAL INVESTIGATIONS UNIT</h1>
+        <h2>CASE FILE TERMINAL</h2>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="section-title">
+        RECOVERED NOTES
+    </div>
+
+    <div class="prompt">
+        Enter a name, place, or symbol.
+    </div>
+
+    <div class="input-line">
+        <span class="prompt-arrow">></span>
+        <input type="text" autofocus>
+        <span class="cursor">█</span>
+    </div>
+
+</div>
+
+<div class="scanline"></div>
+
+</body>
+</html>
