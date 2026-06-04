@@ -110,17 +110,17 @@ button{
     border:1px solid #00ff66;
     color:#00ff66;
     font-family:monospace;
-    padding:8px 14px;
+    padding:8px 16px;
     cursor:pointer;
 }
 
 button:hover{
-    background:#001a00;
+    background:#001100;
 }
 
 #result{
-    margin-top:25px;
-    white-space:pre-line;
+    margin-top:20px;
+    color:#00ff66;
 }
 
 .scanline{
@@ -145,7 +145,7 @@ button:hover{
 
     <div class="header-container">
 
-        <img src="logo.png" class="logo" alt="SIU Logo">
+        <img src="logo.png" class="logo" alt="Logo">
 
         <div class="header">
             <h1>SPECIAL INVESTIGATIONS UNIT</h1>
@@ -166,8 +166,7 @@ button:hover{
 
     <div class="input-line">
         <span class="prompt-arrow">></span>
-        <span id="typedText"></span>
-        <span id="cursor">█</span>
+        <span id="typedText"></span><span id="cursor">█</span>
     </div>
 
     <button onclick="searchFile()">SUBMIT</button>
@@ -189,21 +188,21 @@ function searchFile(){
 
     const query = currentText.trim().toLowerCase();
 
-    if(query === "monkey"){
+    const validFiles = [
+        "henk",
+        "skeleton",
+        "monkey",
+        "desert"
+    ];
 
-        result.innerHTML =
-`DESIGNATION: MONKEY
+    if(validFiles.includes(query)){
 
-STATUS: UNOBSERVED
+        window.location.href = `files/${query}.html`;
 
-NOTES:
-To be is to be seen.`;
-
-    } else {
-
-        result.innerHTML = "FILE NOT FOUND";
-
+        return;
     }
+
+    result.textContent = "FILE NOT FOUND";
 
     currentText = "";
     typedText.textContent = "";
