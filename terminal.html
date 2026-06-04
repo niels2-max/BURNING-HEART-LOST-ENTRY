@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -105,6 +104,25 @@ body{
     }
 }
 
+button{
+    margin-top:20px;
+    background:black;
+    border:1px solid #00ff66;
+    color:#00ff66;
+    font-family:monospace;
+    padding:8px 14px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#001a00;
+}
+
+#result{
+    margin-top:25px;
+    white-space:pre-line;
+}
+
 .scanline{
     position:fixed;
     inset:0;
@@ -152,6 +170,10 @@ body{
         <span id="cursor">█</span>
     </div>
 
+    <button onclick="searchFile()">SUBMIT</button>
+
+    <div id="result"></div>
+
 </div>
 
 <div class="scanline"></div>
@@ -161,6 +183,31 @@ body{
 let currentText = "";
 
 const typedText = document.getElementById("typedText");
+const result = document.getElementById("result");
+
+function searchFile(){
+
+    const query = currentText.trim().toLowerCase();
+
+    if(query === "monkey"){
+
+        result.innerHTML =
+`DESIGNATION: MONKEY
+
+STATUS: UNOBSERVED
+
+NOTES:
+To be is to be seen.`;
+
+    } else {
+
+        result.innerHTML = "FILE NOT FOUND";
+
+    }
+
+    currentText = "";
+    typedText.textContent = "";
+}
 
 document.addEventListener("keydown", function(e){
 
@@ -175,6 +222,9 @@ document.addEventListener("keydown", function(e){
     }
 
     if(e.key === "Enter"){
+
+        e.preventDefault();
+        searchFile();
         return;
     }
 
