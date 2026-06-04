@@ -3,74 +3,357 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>DESERT - SIU RECORD</title>
 
 <style>
-body{background:#000;color:#00ff66;font-family:monospace;margin:0}
-.header{padding:20px 40px;display:flex;align-items:center;gap:20px}
-.logo{width:80px}
-.top-line{border-top:1px solid #00ff66}
-.container{max-width:1000px;margin:auto;padding:40px}
-.record{display:grid;grid-template-columns:280px 1fr;gap:30px;margin-top:30px}
-.imagebox{border:1px solid #00ff66;height:320px;display:flex;justify-content:center;align-items:center}
-table{width:100%;border-collapse:collapse}
-td{border:1px solid #00ff66;padding:12px}
-.section{margin-top:40px}
-.back-link{display:inline-block;color:#00ff66;border:1px solid #00ff66;padding:12px 20px;text-decoration:none}
+
+body{
+    background:#000;
+    color:#00ff66;
+    font-family:monospace;
+    margin:0;
+    padding:0;
+}
+
+.header{
+    padding:20px 40px;
+    display:flex;
+    align-items:center;
+    gap:20px;
+}
+
+.logo{
+    width:80px;
+    height:80px;
+    object-fit:contain;
+}
+
+.header-text h1{
+    margin:0;
+    font-size:28px;
+    font-weight:normal;
+    letter-spacing:3px;
+}
+
+.header-text h2{
+    margin:6px 0 0 0;
+    font-size:14px;
+    font-weight:normal;
+    opacity:0.8;
+    letter-spacing:2px;
+}
+
+.top-line{
+    width:100%;
+    border-top:1px solid #00ff66;
+}
+
+.container{
+    max-width:1000px;
+    margin:auto;
+    padding:40px;
+}
+
+.record-title h3{
+    margin:0;
+    font-size:36px;
+    font-weight:normal;
+    letter-spacing:4px;
+}
+
+.record-title p{
+    margin-top:10px;
+    opacity:0.8;
+}
+
+.record{
+    display:grid;
+    grid-template-columns:280px 1fr;
+    gap:30px;
+    margin-top:30px;
+}
+
+.imagebox{
+    border:1px solid #00ff66;
+    height:320px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:20px;
+}
+
+.info table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+.info td{
+    border:1px solid #00ff66;
+    padding:12px;
+}
+
+.label{
+    width:220px;
+    font-weight:bold;
+}
+
+.section{
+    margin-top:40px;
+}
+
+.section h4{
+    margin-bottom:12px;
+    letter-spacing:2px;
+    font-weight:normal;
+}
+
+.section-line{
+    border-top:1px solid #00ff66;
+    margin:40px 0;
+}
+
+.back-link{
+    display:inline-block;
+    color:#00ff66;
+    text-decoration:none;
+    border:1px solid #00ff66;
+    padding:12px 20px;
+}
+
+.back-link:hover{
+    background:#001100;
+}
+
+.scanline{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    background:
+        repeating-linear-gradient(
+            to bottom,
+            rgba(255,255,255,0.02),
+            rgba(255,255,255,0.02) 1px,
+            transparent 1px,
+            transparent 4px
+        );
+}
+
 </style>
 </head>
 <body>
 
 <div class="header">
-<img src="../logo.png" class="logo">
-<div>
-<h1>SPECIAL INVESTIGATIONS UNIT</h1>
-<p>CASE FILE DATABASE | AUTHORIZED ACCESS ONLY</p>
-</div>
+
+    <img src="../logo.png" class="logo">
+
+    <div class="header-text">
+        <h1>SPECIAL INVESTIGATIONS UNIT</h1>
+        <h2>CASE FILE DATABASE | AUTHORIZED ACCESS ONLY</h2>
+    </div>
+
 </div>
 
 <div class="top-line"></div>
 
 <div class="container">
 
-<h2>DESERT</h2>
-<p>LOCATION RECORD</p>
+    <div class="record-title">
+        <h3>DESERT</h3>
+        <p>LOCATION RECORD</p>
+    </div>
 
-<div class="record">
+    <div class="record">
 
-<div class="imagebox">
-NO IMAGE ON RECORD
+        <div class="imagebox">
+            NO IMAGE ON RECORD
+        </div>
+
+        <div class="info">
+
+            <table>
+
+                <tr>
+                    <td class="label">FILE ID</td>
+                    <td>LOC-018</td>
+                </tr>
+
+                <tr>
+                    <td class="label">TYPE</td>
+                    <td>RESTRICTED LOCATION</td>
+                </tr>
+
+                <tr>
+                    <td class="label">STATUS</td>
+                    <td>ACTIVE INVESTIGATION</td>
+                </tr>
+
+                <tr>
+                    <td class="label">ACCESS</td>
+                    <td>LIMITED</td>
+                </tr>
+
+                <tr>
+                    <td class="label">CLEARANCE</td>
+                    <td>LEVEL 2</td>
+                </tr>
+
+            </table>
+
+        </div>
+
+    </div>
+
+    <div class="section">
+
+        <h4>DESCRIPTION</h4>
+
+        Large desert region currently under investigation by the Special Investigations Unit.
+
+        <br><br>
+
+        The area became a priority following numerous reports of unexplained phenomena and unusual landmarks.
+
+        <br><br>
+
+        Geographic surveys have produced inconsistent results.
+
+        <br><br>
+
+        Certain locations described by witnesses have not been successfully relocated.
+
+    </div>
+
+    <div class="section">
+
+        <h4>RECORDED PHENOMENA</h4>
+
+        Witnesses have reported the presence of a gigantic yellow chick moving through the region.
+
+        <br><br>
+
+        Additional reports describe vast sunflower plains and extensive cactus fields.
+
+        <br><br>
+
+        Several witnesses claim terrain has been flattened across large areas without an identifiable cause.
+
+        <br><br>
+
+        None of these reports have been fully explained.
+
+    </div>
+
+    <div class="section">
+
+        <h4>FOOTPRINT INVESTIGATION</h4>
+
+        Multiple sets of enormous human-like footprints have been documented throughout the region.
+
+        <br><br>
+
+        The scale of the impressions exceeds that of any known individual.
+
+        <br><br>
+
+        Several trails continue for considerable distances.
+
+        <br><br>
+
+        Others terminate abruptly without indication of where the source traveled next.
+
+        <br><br>
+
+        One isolated footprint was later discovered with no trail leading toward or away from the location.
+
+    </div>
+
+    <div class="section">
+
+        <h4>RECOVERED MARKINGS</h4>
+
+        Investigators discovered an unusual symbol scratched into a rock formation.
+
+        <br><br>
+
+        The symbol consisted of:
+
+        <br><br>
+
+        • A circle
+
+        <br>
+
+        • A crown
+
+        <br>
+
+        • A strike passing through both
+
+        <br><br>
+
+        The meaning of the marking remains unknown.
+
+    </div>
+
+    <div class="section">
+
+        <h4>ENTITY SIGHTINGS</h4>
+
+        Multiple sightings of an unidentified crowned skeletal figure have been reported within the region.
+
+        <br><br>
+
+        Witness descriptions remain remarkably consistent despite originating from unrelated individuals.
+
+        <br><br>
+
+        No verified photograph or video evidence has been obtained.
+
+    </div>
+
+    <div class="section">
+
+        <h4>ANALYST NOTES</h4>
+
+        The region remains one of the least understood locations currently under investigation.
+
+        <br><br>
+
+        Reports originating from the area include accounts of enormous footprints, unexplained markings, and sightings of unidentified entities.
+
+        <br><br>
+
+        Several observations made within the region appear to correspond with statements provided by Sir Mupp.
+
+        <br><br>
+
+        The significance of these correlations remains unknown.
+
+        <br><br>
+
+        Further investigation authorized.
+
+    </div>
+
+    <div class="section">
+
+        <h4>RELATED FILES</h4>
+
+        REDACTED
+
+    </div>
+
+    <div class="section-line"></div>
+
+    <a class="back-link" href="../terminal.html">
+        > RETURN TO TERMINAL
+    </a>
+
 </div>
 
-<div>
-<table>
-<tr><td>FILE ID</td><td>LOC-018</td></tr>
-<tr><td>TYPE</td><td>LOCATION</td></tr>
-<tr><td>STATUS</td><td>ACTIVE</td></tr>
-<tr><td>FIRST RECORDED</td><td>UNKNOWN</td></tr>
-<tr><td>CLEARANCE</td><td>LEVEL 1</td></tr>
-</table>
-</div>
-
-</div>
-
-<div class="section">
-<h3>DESCRIPTION</h3>
-Remote desert region repeatedly referenced in recovered notes. Coordinates are absent from all surviving records.
-</div>
-
-<div class="section">
-<h3>ANALYST NOTES</h3>
-References to this location frequently occur alongside mentions of HENK and unidentified skeletal remains.
-</div>
-
-<br><br>
-
-<a class="back-link" href="../terminal.html">
-> RETURN TO TERMINAL
-</a>
-
-</div>
+<div class="scanline"></div>
 
 </body>
 </html>
