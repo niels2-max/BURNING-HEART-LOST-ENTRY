@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -169,6 +170,7 @@ function showHint(btn, t) {
 
   let k = 0;
   const line = document.createElement("div");
+
   t.appendChild(document.createElement("br"));
   t.appendChild(line);
 
@@ -188,24 +190,47 @@ function showSecondPrompt() {
 
   t.innerHTML = "";
 
-  const access = document.createElement("div");
-  access.innerHTML = "ACCESS GRANTED";
+  const text = "ACCESS GRANTED";
 
-  access.style.position = "fixed";
-  access.style.top = "50%";
-  access.style.left = "50%";
-  access.style.transform = "translate(-50%, -50%)";
-  access.style.fontSize = "48px";
-  access.style.fontWeight = "bold";
-  access.style.color = "#00ff66";
-  access.style.fontFamily = "monospace";
-  access.style.textAlign = "center";
+  let pos = 0;
 
-  document.body.appendChild(access);
+  function typeAccess() {
+    if (pos < text.length) {
+      t.innerHTML += text.charAt(pos);
+      pos++;
+      setTimeout(typeAccess, 60);
+    } else {
+      setTimeout(startBlinking, 600);
+    }
+  }
 
-  setTimeout(() => {
-    window.location.href = "terminal.html";
-  }, 2500);
+  function startBlinking() {
+    let blinkCount = 0;
+
+    const blinkInterval = setInterval(() => {
+
+      if (t.style.visibility === "hidden") {
+        t.style.visibility = "visible";
+      } else {
+        t.style.visibility = "hidden";
+      }
+
+      blinkCount++;
+
+      if (blinkCount >= 8) {
+        clearInterval(blinkInterval);
+
+        t.style.visibility = "visible";
+
+        setTimeout(() => {
+          window.location.href = "terminal.html";
+        }, 1500);
+      }
+
+    }, 250);
+  }
+
+  typeAccess();
 }
 
 typeLines();
@@ -214,3 +239,4 @@ typeLines();
 
 </body>
 </html>
+```
