@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>FLAME HEART FILE</title>
 
 <style>
@@ -107,7 +108,6 @@ function typeLines() {
   } else {
     startLoadingDots();
 
-    // total delay now 5 seconds before password screen
     setTimeout(() => {
       stopLoadingDots();
       showPasswordScreen();
@@ -137,6 +137,12 @@ function showPasswordScreen() {
 
   btn.onclick = () => checkPassword(input.value.trim(), t, input);
   hintBtn.onclick = () => showHint(hintBtn, t);
+
+  input.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+      checkPassword(input.value.trim(), t, input);
+    }
+  });
 }
 
 function checkPassword(val, t, input) {
@@ -179,22 +185,27 @@ function showHint(btn, t) {
 
 function showSecondPrompt() {
   const t = document.getElementById("terminal");
+
   t.innerHTML = "";
 
-  const q = document.createElement("div");
-  q.innerHTML = "> what do you seek?";
-  t.appendChild(q);
+  const access = document.createElement("div");
+  access.innerHTML = "ACCESS GRANTED";
 
-  const input = document.createElement("input");
-  t.appendChild(input);
+  access.style.position = "fixed";
+  access.style.top = "50%";
+  access.style.left = "50%";
+  access.style.transform = "translate(-50%, -50%)";
+  access.style.fontSize = "48px";
+  access.style.fontWeight = "bold";
+  access.style.color = "#00ff66";
+  access.style.fontFamily = "monospace";
+  access.style.textAlign = "center";
 
-  const btn = document.createElement("button");
-  btn.innerHTML = "submit";
-  t.appendChild(btn);
+  document.body.appendChild(access);
 
-  btn.onclick = () => {
-    t.innerHTML = "> RESPONSE LOGGED\n\n[The answer awaits. Coming Soon...]";
-  };
+  setTimeout(() => {
+    window.location.href = "terminal.html";
+  }, 2500);
 }
 
 typeLines();
