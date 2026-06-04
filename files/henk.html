@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,50 +13,78 @@ body{
     color:#00ff66;
     font-family:monospace;
     margin:0;
-    padding:30px;
+    padding:0;
+}
+
+.header{
+    padding:20px 40px;
+    display:flex;
+    align-items:center;
+    gap:20px;
+}
+
+.logo{
+    width:80px;
+    height:80px;
+    object-fit:contain;
+    filter:
+        drop-shadow(0 0 4px #00ff66)
+        brightness(1.1);
+}
+
+.header-text h1{
+    margin:0;
+    font-size:28px;
+    font-weight:normal;
+    letter-spacing:3px;
+}
+
+.header-text h2{
+    margin:6px 0 0 0;
+    font-size:14px;
+    font-weight:normal;
+    opacity:0.8;
+    letter-spacing:2px;
+}
+
+.top-line{
+    width:100%;
+    border-top:1px solid #00ff66;
 }
 
 .container{
     max-width:1000px;
     margin:auto;
+    padding:40px;
 }
 
-h1{
+.record-title h3{
+    margin:0;
+    font-size:36px;
     font-weight:normal;
     letter-spacing:4px;
-    margin-bottom:5px;
 }
 
-.subtitle{
-    opacity:0.7;
-    margin-bottom:25px;
-}
-
-.line{
-    border-top:1px solid #00ff66;
-    margin:20px 0;
+.record-title p{
+    margin-top:10px;
+    opacity:0.8;
 }
 
 .record{
     display:grid;
-    grid-template-columns:250px 1fr;
+    grid-template-columns:280px 1fr;
     gap:30px;
     margin-top:30px;
 }
 
 .imagebox{
     border:1px solid #00ff66;
-    height:300px;
+    height:320px;
     display:flex;
     align-items:center;
     justify-content:center;
     text-align:center;
-}
-
-.imagebox img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
+    padding:20px;
 }
 
 .info table{
@@ -67,123 +94,165 @@ h1{
 
 .info td{
     border:1px solid #00ff66;
-    padding:10px;
+    padding:12px;
 }
 
 .label{
-    width:200px;
+    width:220px;
     font-weight:bold;
 }
 
 .section{
-    margin-top:30px;
-}
-
-.section-title{
-    margin-bottom:10px;
-    font-weight:bold;
-}
-
-.back{
     margin-top:40px;
 }
 
-.back button{
-    background:black;
-    border:1px solid #00ff66;
-    color:#00ff66;
-    font-family:monospace;
-    padding:10px 20px;
-    cursor:pointer;
+.section h4{
+    margin-bottom:12px;
+    letter-spacing:2px;
+    font-weight:normal;
 }
 
-.back button:hover{
+.section-line{
+    border-top:1px solid #00ff66;
+    margin:40px 0;
+}
+
+.back-link{
+    display:inline-block;
+    color:#00ff66;
+    text-decoration:none;
+    border:1px solid #00ff66;
+    padding:12px 20px;
+}
+
+.back-link:hover{
     background:#001100;
+}
+
+.scanline{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    background:
+        repeating-linear-gradient(
+            to bottom,
+            rgba(255,255,255,0.02),
+            rgba(255,255,255,0.02) 1px,
+            transparent 1px,
+            transparent 4px
+        );
 }
 
 </style>
 </head>
 <body>
 
+<div class="header">
+
+    <img src="../logo.png" class="logo">
+
+    <div class="header-text">
+        <h1>SPECIAL INVESTIGATIONS UNIT</h1>
+        <h2>CASE FILE DATABASE | AUTHORIZED ACCESS ONLY</h2>
+    </div>
+
+</div>
+
+<div class="top-line"></div>
+
 <div class="container">
 
-<h1>HENK</h1>
-<div class="subtitle">SIU PERSON OF INTEREST RECORD</div>
+    <div class="record-title">
+        <h3>HENK</h3>
+        <p>PERSON OF INTEREST RECORD</p>
+    </div>
 
-<div class="line"></div>
+    <div class="record">
 
-<div class="record">
+        <div class="imagebox">
+            NO IMAGE ON RECORD
+        </div>
 
-<div class="imagebox">
-NO IMAGE ON RECORD
+        <div class="info">
+
+            <table>
+
+                <tr>
+                    <td class="label">FILE ID</td>
+                    <td>PER-022</td>
+                </tr>
+
+                <tr>
+                    <td class="label">TYPE</td>
+                    <td>PERSON OF INTEREST</td>
+                </tr>
+
+                <tr>
+                    <td class="label">STATUS</td>
+                    <td>ACTIVE</td>
+                </tr>
+
+                <tr>
+                    <td class="label">FIRST RECORDED</td>
+                    <td>UNKNOWN</td>
+                </tr>
+
+                <tr>
+                    <td class="label">CLEARANCE</td>
+                    <td>LEVEL 1</td>
+                </tr>
+
+            </table>
+
+        </div>
+
+    </div>
+
+    <div class="section">
+
+        <h4>DESCRIPTION</h4>
+
+        Name recovered from fragmented reports connected to several ongoing investigations.
+
+        <br><br>
+
+        No complete profile currently exists.
+
+        <br><br>
+
+        No confirmed image has been recovered.
+
+    </div>
+
+    <div class="section">
+
+        <h4>ANALYST NOTES</h4>
+
+        Reference frequency exceeds expected statistical occurrence.
+
+        <br><br>
+
+        Further review recommended.
+
+    </div>
+
+    <div class="section">
+
+        <h4>RELATED FILES</h4>
+
+        REDACTED
+
+    </div>
+
+    <div class="section-line"></div>
+
+    <a class="back-link" href="../terminal.html">
+        > RETURN TO TERMINAL
+    </a>
+
 </div>
 
-<div class="info">
-
-<table>
-<tr>
-<td class="label">FILE ID</td>
-<td>PER-022</td>
-</tr>
-
-<tr>
-<td class="label">TYPE</td>
-<td>PERSON OF INTEREST</td>
-</tr>
-
-<tr>
-<td class="label">STATUS</td>
-<td>ACTIVE</td>
-</tr>
-
-<tr>
-<td class="label">FIRST RECORDED</td>
-<td>UNKNOWN</td>
-</tr>
-
-<tr>
-<td class="label">CLEARANCE</td>
-<td>LEVEL 1</td>
-</tr>
-</table>
-
-</div>
-
-</div>
-
-<div class="section">
-<div class="section-title">DESCRIPTION</div>
-
-Name recovered from fragmented reports
-connected to several ongoing investigations.
-
-No complete profile currently exists.
-
-No confirmed image has been recovered.
-</div>
-
-<div class="section">
-<div class="section-title">ANALYST NOTES</div>
-
-Reference frequency exceeds expected
-statistical occurrence.
-
-Further review recommended.
-</div>
-
-<div class="section">
-<div class="section-title">RELATED FILES</div>
-
-REDACTED
-</div>
-
-<div class="back">
-<button onclick="window.location.href='../terminal.html'">
-RETURN TO TERMINAL
-</button>
-</div>
-
-</div>
+<div class="scanline"></div>
 
 </body>
 </html>
