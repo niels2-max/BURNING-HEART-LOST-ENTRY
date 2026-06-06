@@ -13,19 +13,20 @@ body{
     color:#00ff66;
     font-family:monospace;
     margin:0;
-    padding:0;
-    height:100vh;
+    padding:20px;
+    min-height:100vh;
     display:flex;
     justify-content:center;
     align-items:center;
-    overflow:hidden;
+    overflow-x:hidden;
 }
 
 #terminal{
     width:900px;
-    max-width:90%;
+    max-width:100%;
     border:1px solid #00ff66;
     padding:30px;
+    box-sizing:border-box;
     box-shadow:
         0 0 10px #00ff66,
         inset 0 0 10px rgba(0,255,102,0.2);
@@ -84,6 +85,7 @@ body{
     align-items:center;
     flex-wrap:wrap;
     font-size:16px;
+    cursor:text;
 }
 
 .prompt-arrow{
@@ -91,7 +93,8 @@ body{
 }
 
 #typedText{
-    white-space:pre;
+    white-space:pre-wrap;
+    word-break:break-word;
 }
 
 #cursor{
@@ -104,13 +107,19 @@ body{
     }
 }
 
+#realInput{
+    position:absolute;
+    left:-9999px;
+    opacity:0;
+}
+
 button{
     margin-top:20px;
     background:black;
     border:1px solid #00ff66;
     color:#00ff66;
     font-family:monospace;
-    padding:8px 16px;
+    padding:10px 16px;
     cursor:pointer;
 }
 
@@ -135,6 +144,32 @@ button:hover{
             transparent 1px,
             transparent 4px
         );
+}
+
+@media(max-width:700px){
+
+    #terminal{
+        padding:20px;
+    }
+
+    .header-container{
+        flex-direction:column;
+        text-align:center;
+    }
+
+    .logo{
+        width:70px;
+        height:70px;
+    }
+
+    .header h1{
+        font-size:18px;
+    }
+
+    .header h2{
+        font-size:12px;
+    }
+
 }
 
 </style>
@@ -164,10 +199,19 @@ button:hover{
         Enter a name, place, or symbol.
     </div>
 
-    <div class="input-line">
+    <div class="input-line" onclick="focusInput()">
         <span class="prompt-arrow">></span>
         <span id="typedText"></span><span id="cursor">█</span>
     </div>
+
+    <input
+        id="realInput"
+        type="text"
+        autocomplete="off"
+        autocorrect="off"
+        autocapitalize="none"
+        spellcheck="false"
+    >
 
     <button onclick="searchFile()">SUBMIT</button>
 
@@ -179,14 +223,30 @@ button:hover{
 
 <script>
 
-let currentText = "";
-
 const typedText = document.getElementById("typedText");
 const result = document.getElementById("result");
+const realInput = document.getElementById("realInput");
+
+function focusInput(){
+    realInput.focus();
+}
+
+realInput.addEventListener("input", function(){
+    typedText.textContent = realInput.value;
+});
+
+realInput.addEventListener("keydown", function(e){
+
+    if(e.key === "Enter"){
+        e.preventDefault();
+        searchFile();
+    }
+
+});
 
 function searchFile(){
 
-    const query = currentText.trim().toLowerCase();
+    const query = realInput.value.trim().toLowerCase();
 
     const validFiles = [
         "henk",
@@ -200,43 +260,19 @@ function searchFile(){
     if(validFiles.includes(query)){
 
         window.location.href = `files/${query}.html`;
-
         return;
+
     }
 
     result.textContent = "FILE NOT FOUND";
 
-    currentText = "";
+    realInput.value = "";
     typedText.textContent = "";
+
+    focusInput();
 }
 
-document.addEventListener("keydown", function(e){
-
-    if(e.key === "Backspace"){
-
-        e.preventDefault();
-
-        currentText = currentText.slice(0,-1);
-        typedText.textContent = currentText;
-
-        return;
-    }
-
-    if(e.key === "Enter"){
-
-        e.preventDefault();
-        searchFile();
-        return;
-    }
-
-    if(e.key.length === 1){
-
-        currentText += e.key;
-        typedText.textContent = currentText;
-
-    }
-
-});
+focusInput();
 
 </script>
 
